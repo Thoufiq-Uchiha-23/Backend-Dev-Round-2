@@ -4,7 +4,7 @@ const app = express(); // opening the toolbox by storing all things in app varia
 app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
-    res.send('Hello World')
+    res.render('index')
 })
 
 app.get('/about', (req, res) => {
