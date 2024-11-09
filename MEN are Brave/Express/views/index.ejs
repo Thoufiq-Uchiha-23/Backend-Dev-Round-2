@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Express EJS</title>
-</head>
-<body>
-    <h1>Hello Express</h1>
-    <small>Hello small express</small>
-</body>
+  </head>
+  <body>
+    <form action="/get-form-data" method="post">
+      <input type="text" placeholder="Enter username" name="username" />
+      <input type="text" placeholder="Enter email" name="email" />
+      <input type="password" placeholder="Enter password" name="password" />
+      <button>Submit form</button>
+    </form>
+  </body>
 </html>
