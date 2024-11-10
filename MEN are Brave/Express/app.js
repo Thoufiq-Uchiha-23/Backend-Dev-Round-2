@@ -1,7 +1,9 @@
 const express = require("express");
 const morgan = require("morgan");
 
-const app = express(); // opening the toolbox by storing all things in app 
+const app = express(); // opening the toolbox by storing all things in app
+const dbConnection = require('./config/db')
+const userModel = require('./models/user')
 
 app.set("view engine", "ejs");
 
@@ -14,12 +16,12 @@ app.set("view engine", "ejs");
 
 // Third-party Middleware
 app.use(morgan("dev"));
- 
+
 // Built-in Middlewares
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 // to access static files we also have a middleware for that
-app.use(express.static("public"))
+app.use(express.static("public"));
 
 // Custom middleware
 // This middleware as default runs for all routes...
@@ -56,6 +58,22 @@ app.get("/about", (req, res) => {
 app.get("/profile", (req, res) => {
   res.send("Profile Page");
 });
+
+app.get('/register', (req, res) => {
+  res.render('register')
+})
+
+app.post('/register', async (req,res) => {
+  const {username, email, password} = req.body
+
+  const newUser = await userModel.create({
+    username: username,
+    email: email,
+    password: password
+  })
+
+  res.send(newUser)
+})
 
 // Built in controller used for Form and server operations
 // we have to create a specified key of route
