@@ -18,6 +18,8 @@ app.use(morgan("dev"));
 // Built-in Middlewares
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
+// to access static files we also have a middleware for that
+app.use(express.static("public"))
 
 // Custom middleware
 // This middleware as default runs for all routes...
