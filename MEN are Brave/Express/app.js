@@ -75,7 +75,49 @@ app.post('/register', async (req,res) => {
   res.send(newUser)
 })
 
-// Built in controller used for Form and server operations
+// CRUD operation performed on database using MongoDB
+app.get('/get-users', (req, res) => {
+  // This is how we READ data from database using find
+  // userModel.find().then((users) => {
+  //   res.send(users)
+  // })
+
+  // userModel.find({
+  //   username: "thoufiq1"
+  // }).then((users) => {
+  //   res.send(users)
+  // })
+
+  // To find one data
+  userModel.findOne({
+    username: "thoufiq"
+  }).then((users) => {
+    res.send(users)
+  })
+})
+
+// UPDATE
+app.get("/update-user", async (req, res) => {
+  await userModel.findOneAndUpdate({
+    username: "thoufiq",
+  }, {
+    email: "t@t.com"
+  })
+
+  res.send("user updated")
+})
+
+// DELETE
+app.get('/delete-user', async (req, res) => {
+  await userModel.findOneAndDelete({
+    username: "thoufiq1"
+  })
+
+  res.send('user deleted')
+})
+
+
+// Built in controller uased for Form and server operations
 // we have to create a specified key of route
 app.post("/get-form-data", (req, res) => {
   console.log(req.body);
